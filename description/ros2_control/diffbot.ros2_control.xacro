@@ -20,7 +20,7 @@
           <param name="mcu_right_servo_id">1</param>
           <param name="mcu_left_servo_offset">-0</param>
           <param name="mcu_right_servo_offset">0</param>
-          <param name="servo_scaler">4.0</param>
+          <param name="servo_scaler">2.0</param>
           <param name="servo_max_angle">15.0</param>
           <!-- ... -->
           <!-- DDSM115 Settings -->
