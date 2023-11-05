@@ -12,7 +12,7 @@
           <param name="steering_left_name">steering_left_pivot_joint</param>
           <param name="steering_right_name">steering_right_pivot_joint</param>
           <!-- <param name="device">/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0</param> -->
-          <param name="mcu_device">/dev/ttyACM1</param>
+          <param name="mcu_device">/dev/ttyACM0</param>
           <param name="mcu_baud_rate">57600</param>
           <param name="mcu_timeout_ms">1000</param>
           <param name="mcu_left_servo_id">0</param>
