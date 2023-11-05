@@ -234,8 +234,8 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
 {
   // Set SERVO/Steering Positions
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Command is: %f", steer_l_.cmd );
-  mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/4 + cfg_.mcu_left_servo_offset );
-  mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/4 + cfg_.mcu_right_servo_offset );
+  mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/4 + (90 + cfg_.mcu_left_servo_offset) );
+  mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/4 + (90 + cfg_.mcu_right_servo_offset) );
 
 
   // Set DDSM115 Wheel Velocities
