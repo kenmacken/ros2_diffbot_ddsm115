@@ -12,19 +12,21 @@
           <param name="steering_left_name">steering_left_pivot_joint</param>
           <param name="steering_right_name">steering_right_pivot_joint</param>
           <!-- <param name="device">/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0</param> -->
-          <param name="mcu_device">/dev/ttyACM0</param>
+          <!-- <param name="mcu_device">/dev/ttyACM0</param> -->
+          <param name="device">/dev/serial/by-id/usb-Arduino_Seeed_XIAO_nRF52840_Sense_D1CD2B3275EB486A-if00</param>
           <param name="mcu_baud_rate">57600</param>
           <param name="mcu_timeout_ms">1000</param>
           <param name="mcu_left_servo_id">0</param>
           <param name="mcu_right_servo_id">1</param>
-          <param name="mcu_left_servo_offset">-20</param>
+          <param name="mcu_left_servo_offset">-0</param>
           <param name="mcu_right_servo_offset">0</param>
           <!-- ... -->
           <!-- DDSM115 Settings -->
           <param name="left_wheel_name">left_wheel_joint</param>
           <param name="right_wheel_name">right_wheel_joint</param>
           <!-- <param name="device">/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0</param> -->
-          <param name="ddsm115_device">/dev/ttyUSB0</param>
+          <!-- <param name="ddsm115_device">/dev/ttyUSB0</param> -->
+          <param name="device">/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AQ0288O8-if00-port0</param>
           <param name="ddsm115_baud_rate">115200</param>
           <param name="ddsm115_timeout_ms">1000</param>
           <param name="ddsm115_left_wheel_id">0</param>
