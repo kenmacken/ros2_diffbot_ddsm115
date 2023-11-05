@@ -39,7 +39,7 @@ ackermann_steering_controller:
     open_loop: true
     velocity_rolling_window_size: 20
     position_feedback: false
-    use_stamped_vel: true
+    use_stamped_vel: false
     rear_wheels_names: [right_wheel_joint, left_wheel_joint]
     front_wheels_names: [steering_right_pivot_joint, steering_left_pivot_joint]
 

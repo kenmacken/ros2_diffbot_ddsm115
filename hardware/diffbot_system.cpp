@@ -47,6 +47,8 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
   cfg_.mcu_right_servo_id = std::stoi(info_.hardware_parameters["mcu_right_servo_id"]);
   cfg_.mcu_left_servo_offset = std::stoi(info_.hardware_parameters["mcu_left_servo_offset"]);
   cfg_.mcu_right_servo_offset = std::stoi(info_.hardware_parameters["mcu_right_servo_offset"]);
+  cfg_.servo_scaler = std::stof(info_.hardware_parameters["servo_scaler"]);
+  cfg_.servo_max_angle = std::stof(info_.hardware_parameters["servo_max_angle"]);
 
   cfg_.left_wheel_name = info_.hardware_parameters["left_wheel_name"];
   cfg_.right_wheel_name = info_.hardware_parameters["right_wheel_name"];
@@ -234,8 +236,8 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
 {
   // Set SERVO/Steering Positions
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Command is: %f", steer_l_.cmd );
-  mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/4 + (90 + cfg_.mcu_left_servo_offset) );
-  mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/4 + (90 + cfg_.mcu_right_servo_offset) );
+  mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_left_servo_offset) );
+  mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_right_servo_offset) );
 
 
   // Set DDSM115 Wheel Velocities

@@ -51,6 +51,8 @@ struct Config
   int mcu_right_servo_id = 1;
   int mcu_left_servo_offset = 0;
   int mcu_right_servo_offset = 0;
+  float servo_scaler = 0.0;
+  float servo_max_angle = 0.0;
   std::string left_wheel_name = "";
   std::string right_wheel_name = "";
   std::string ddsm115_device = "";
