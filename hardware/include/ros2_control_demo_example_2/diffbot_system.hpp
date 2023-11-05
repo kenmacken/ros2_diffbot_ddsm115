@@ -58,8 +58,8 @@ struct Config
   std::string ddsm115_device = "";
   int ddsm115_baud_rate = 115200;
   int ddsm115_timeout_ms = 1;
-  int ddsm115_left_wheel_id = 2;
-  int ddsm115_right_wheel_id = 3;
+  int ddsm115_left_wheel_id = 0;
+  int ddsm115_right_wheel_id = 0;
 };
 
 public:
