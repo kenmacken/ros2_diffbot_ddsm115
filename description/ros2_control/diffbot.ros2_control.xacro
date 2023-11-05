@@ -17,7 +17,7 @@
           <param name="mcu_timeout_ms">1000</param>
           <param name="mcu_left_servo_id">0</param>
           <param name="mcu_right_servo_id">1</param>
-          <param name="mcu_left_servo_offset">0</param>
+          <param name="mcu_left_servo_offset">-20</param>
           <param name="mcu_right_servo_offset">0</param>
           <!-- ... -->
           <!-- DDSM115 Settings -->
