@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
+    <xacro:property name="PI" value="3.1415926535897931"/>
+
 
     <joint name="laser_joint" type="fixed">
         <parent link="base_link"/>
         <child link="laser_frame"/>
-        <origin xyz="-0.12 0 0.4" rpy="0 0 3.1415926535897931"/>
+        <origin xyz="-0.12 0 0.4" rpy="0 0 -${PI/2}"/>
     </joint>
 
     <link name="laser_frame">
