@@ -19,28 +19,28 @@
   <xacro:property name="z_offset" value="-${chassis_height/2}" /> <!-- Space btw top of beam and the each joint -->
 
   <!-- Base Link -->
-  <link name="${prefix}base_link">
+  <link name="base_link">
   </link>
 
   <!-- BASE_FOOTPRINT LINK -->
-  <joint name="${prefix}base_footprint_joint" type="fixed">
-      <parent link="${prefix}base_link"/>
-      <child link="${prefix}base_footprint"/>
+  <joint name="base_footprint_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="base_footprint"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
   </joint>
 
-  <link name="${prefix}base_footprint">
+  <link name="base_footprint">
   </link>
 
 
   <!-- Chassis Link -->
-  <joint name="${prefix}chassis_joint" type="fixed">
-    <parent link="${prefix}base_link"/>
-    <child link="${prefix}chassis"/>
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis"/>
     <origin xyz="-${chassis_length/2} 0 ${chassis_base_offset}"/>
   </joint>
 
-  <link name="${prefix}chassis">
+  <link name="chassis">
     <visual>
         <origin xyz="${chassis_length/2} 0 ${chassis_height/2}"/>
         <geometry>
@@ -65,14 +65,14 @@
 
 
   Steering Left Pivot Link
-  <joint name="${prefix}steering_left_pivot_joint" type="continuous">
-    <parent link="${prefix}base_link"/>
-    <child link="${prefix}steering_left_pivot"/>
+  <joint name="steering_left_pivot_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="steering_left_pivot"/>
     <origin xyz="${wheel_pos_front} ${wheel_pivot_pos_front} 0.02" rpy="0 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="${prefix}steering_left_pivot">
+  <link name="steering_left_pivot">
     <visual>
         <geometry>
             <cylinder length="0.1" radius="0.025"/>
@@ -95,14 +95,14 @@
 
 
   <!-- left wheel front Link -->
-  <joint name="${prefix}left_wheel_joint" type="continuous">
-    <parent link="${prefix}steering_left_pivot"/>
-    <child link="${prefix}left_wheel"/>
+  <joint name="left_wheel_joint" type="continuous">
+    <parent link="steering_left_pivot"/>
+    <child link="left_wheel"/>
     <origin xyz="0 0.045 -0.02" rpy="-${PI/2} 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="${prefix}left_wheel">
+  <link name="left_wheel">
     <visual>
       <geometry>
         <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
@@ -126,14 +126,14 @@
 
 
   <!-- Steering Right Pivot Link -->
-  <joint name="${prefix}steering_right_pivot_joint" type="continuous">
-    <parent link="${prefix}base_link"/>
-    <child link="${prefix}steering_right_pivot"/>
+  <joint name="steering_right_pivot_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="steering_right_pivot"/>
     <origin xyz="${wheel_pos_front} ${-wheel_pivot_pos_front} 0.02" rpy="0 0 ${PI}"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="${prefix}steering_right_pivot">
+  <link name="steering_right_pivot">
     <visual>
         <geometry>
             <cylinder length="0.1" radius="0.025"/>
@@ -156,14 +156,14 @@
 
 
   <!-- right wheel front Link -->
-  <joint name="${prefix}right_wheel_joint" type="continuous">
-    <parent link="${prefix}steering_right_pivot"/>
-    <child link="${prefix}right_wheel"/>
+  <joint name="right_wheel_joint" type="continuous">
+    <parent link="steering_right_pivot"/>
+    <child link="right_wheel"/>
     <origin xyz="0 0.045 -0.02" rpy="-${PI/2} 0 0"/>
     <axis xyz="0 0 -1"/>
   </joint>
 
-  <link name="${prefix}right_wheel">
+  <link name="right_wheel">
     <visual>
       <geometry>
         <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
@@ -186,14 +186,14 @@
 
 
   <!-- left wheel rear Link -->
-  <joint name="${prefix}left_wheel_rear_joint" type="continuous">
-    <parent link="${prefix}base_link"/>
-    <child link="${prefix}left_wheel_rear"/>
+  <joint name="left_wheel_rear_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="left_wheel_rear"/>
     <origin xyz="-${wheel_pos_rear} ${chassis_width/2 + wheel_len/2} 0" rpy="-${PI/2} 0 0"/>
     <axis xyz="0 0 1"/>
   </joint>
 
-  <link name="${prefix}left_wheel_rear">
+  <link name="left_wheel_rear">
     <visual>
       <geometry>
         <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
@@ -216,14 +216,14 @@
 
 
   <!-- right wheel rear Link -->
-  <joint name="${prefix}right_wheel_rear_joint" type="continuous">
-    <parent link="${prefix}base_link"/>
-    <child link="${prefix}right_wheel_rear"/>
+  <joint name="right_wheel_rear_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="right_wheel_rear"/>
     <origin xyz="-${wheel_pos_rear} -${chassis_width/2 + wheel_len/2} 0" rpy="${PI/2} 0 0"/>
     <axis xyz="0 0 -1"/>
   </joint>
 
-  <link name="${prefix}right_wheel_rear">
+  <link name="right_wheel_rear">
     <visual>
       <geometry>
         <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
