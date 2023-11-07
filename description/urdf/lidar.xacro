@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
+<xacro:macro name="diffbot" params="prefix">
+
     <joint name="laser_joint" type="fixed">
         <parent link="base_link"/>
         <child link="laser_frame"/>
@@ -55,5 +57,6 @@
             </plugin>
         </sensor>
     </gazebo>
-
+    
+</xacro:macro>
 </robot>
