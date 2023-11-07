@@ -1,13 +1,12 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:macro name="diffbot_ros2_control" params="name prefix">
 
-        <ros2_control name="${name}" type="system">
+        <ros2_control name="RoboGazebo" type="system">
             <hardware>
                 <plugin>gazebo_ros2_control/GazeboSystem</plugin>
             </hardware>
-            <joint name="${prefix}left_wheel_joint">
+            <joint name="left_wheel_joint">
                 <command_interface name="velocity">
                     <param name="min">-10</param>
                     <param name="max">10</param>
@@ -15,7 +14,7 @@
                 <state_interface name="velocity"/>
                 <state_interface name="position"/>
             </joint>
-            <joint name="${prefix}right_wheel_joint">
+            <joint name="right_wheel_joint">
                 <command_interface name="velocity">
                     <param name="min">-10</param>
                     <param name="max">10</param>
@@ -32,5 +31,4 @@
             </plugin>
         </gazebo>
 
-    </xacro:macro>
 </robot>
