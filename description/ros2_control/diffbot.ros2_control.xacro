@@ -31,8 +31,8 @@
           <param name="ddsm115_device">/dev/serial/by-id/usb-FTDI_FT232R_USB_UART_AQ0288O8-if00-port0</param>
           <param name="ddsm115_baud_rate">115200</param>
           <param name="ddsm115_timeout_ms">1000</param>
-          <param name="ddsm115_left_wheel_id">1</param>
-          <param name="ddsm115_right_wheel_id">2</param>
+          <param name="ddsm115_left_wheel_id">3</param>
+          <param name="ddsm115_right_wheel_id">4</param>
         </hardware>
       </xacro:unless>
       <xacro:if value="${use_mock_hardware}">
