@@ -60,8 +60,8 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
 
   wheel_l_.setup(cfg_.left_wheel_name, cfg_.ddsm115_left_wheel_id);
   wheel_r_.setup(cfg_.right_wheel_name, cfg_.ddsm115_right_wheel_id);
-  steer_l_.setup(cfg_.steering_left_name, cfg_.mcu_left_servo_id);
-  steer_r_.setup(cfg_.steering_right_name, cfg_.mcu_right_servo_id);
+  // steer_l_.setup(cfg_.steering_left_name, cfg_.mcu_left_servo_id);
+  // steer_r_.setup(cfg_.steering_right_name, cfg_.mcu_right_servo_id);
 
 
   for (const hardware_interface::ComponentInfo & joint : info_.joints)
