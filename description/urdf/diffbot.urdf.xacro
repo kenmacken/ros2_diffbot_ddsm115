@@ -12,12 +12,11 @@
   <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/materials.xacro" />
 
   <!-- Import diffbot ros2_control description -->
-  <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/ros2_control/diffbot.ros2_control.xacro" /> -->
-  <xacro:include filename="$(find ros2_control_demo_example_2)/ros2_control/gazebo.ros2_control.xacro" />
+  <xacro:include filename="$(find ros2_control_demo_example_2)/ros2_control/diffbot.ros2_control.xacro" />
+  <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/ros2_control/gazebo.ros2_control.xacro" /> -->
 
   <xacro:diffbot prefix="$(arg prefix)" />
 
-  <xacro:diffbot_ros2_control
-    name="DiffBot" prefix="$(arg prefix)" use_mock_hardware="$(arg use_mock_hardware)"/>
+  <xacro:diffbot_ros2_control name="DiffBot" prefix="$(arg prefix)" use_mock_hardware="$(arg use_mock_hardware)"/>
 
 </robot>
