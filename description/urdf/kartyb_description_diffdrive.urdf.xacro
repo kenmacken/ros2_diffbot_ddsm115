@@ -64,36 +64,6 @@
   </gazebo>
 
 
-  Steering Left Pivot Link
-  <joint name="steering_left_pivot_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="steering_left_pivot"/>
-    <origin xyz="${wheel_pos_front} ${wheel_pivot_pos_front} 0.02" rpy="0 0 0"/>
-    <axis xyz="0 0 1"/>
-  </joint>
-
-  <link name="steering_left_pivot">
-    <visual>
-        <geometry>
-            <cylinder length="0.1" radius="0.025"/>
-        </geometry>
-        <material name="white"/>
-    </visual>
-    <collision>
-        <geometry>
-            <cylinder length="0.1" radius="0.025"/>
-        </geometry>
-    </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="0.1" radius="0.025">
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_cylinder>
-  </link>
-
-  <gazebo reference="steering_left_pivot">
-      <material>Gazebo/White</material>
-  </gazebo>
-
-
   <!-- left wheel front Link -->
   <joint name="left_wheel_joint" type="continuous">
     <parent link="base_link"/>
@@ -125,36 +95,6 @@
 
 
 
-  <!-- Steering Right Pivot Link -->
-  <joint name="steering_right_pivot_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="steering_right_pivot"/>
-    <origin xyz="${wheel_pos_front} ${-wheel_pivot_pos_front} 0.02" rpy="0 0 ${PI}"/>
-    <axis xyz="0 0 1"/>
-  </joint>
-
-  <link name="steering_right_pivot">
-    <visual>
-        <geometry>
-            <cylinder length="0.1" radius="0.025"/>
-        </geometry>
-        <material name="white"/>
-    </visual>
-    <collision>
-        <geometry>
-            <cylinder length="0.1" radius="0.025"/>
-        </geometry>
-    </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="0.1" radius="0.025">
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_cylinder>
-  </link>
-
-  <gazebo reference="steering_right_pivot">
-      <material>Gazebo/White</material>
-  </gazebo>
-
-
   <!-- right wheel front Link -->
   <joint name="right_wheel_joint" type="continuous">
     <parent link="base_link"/>
@@ -181,66 +121,6 @@
   </link>
 
   <gazebo reference="right_wheel">
-      <material>Gazebo/Black</material>
-  </gazebo>
-
-
-  <!-- left wheel rear Link -->
-  <joint name="left_wheel_rear_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="left_wheel_rear"/>
-    <origin xyz="-${wheel_pos_rear} ${chassis_width/2 + wheel_len/2} 0" rpy="-${PI/2} 0 0"/>
-    <axis xyz="0 0 1"/>
-  </joint>
-
-  <link name="left_wheel_rear">
-    <visual>
-      <geometry>
-        <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
-      </geometry>
-      <material name="black"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_len}" radius="${wheel_radius}">
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_cylinder>
-  </link>
-
-  <gazebo reference="left_wheel_rear">
-      <material>Gazebo/Black</material>
-  </gazebo>
-
-
-  <!-- right wheel rear Link -->
-  <joint name="right_wheel_rear_joint" type="continuous">
-    <parent link="base_link"/>
-    <child link="right_wheel_rear"/>
-    <origin xyz="-${wheel_pos_rear} -${chassis_width/2 + wheel_len/2} 0" rpy="${PI/2} 0 0"/>
-    <axis xyz="0 0 -1"/>
-  </joint>
-
-  <link name="right_wheel_rear">
-    <visual>
-      <geometry>
-        <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
-      </geometry>
-      <material name="black"/>
-    </visual>
-    <collision>
-      <geometry>
-        <cylinder length="${wheel_len}" radius="${wheel_radius}"/>
-      </geometry>
-    </collision>
-    <xacro:inertial_cylinder mass="${wheel_mass}" length="${wheel_len}" radius="${wheel_radius}">
-          <origin xyz="0 0 0" rpy="0 0 0"/>
-    </xacro:inertial_cylinder>
-  </link>
-
-  <gazebo reference="right_wheel_rear">
       <material>Gazebo/Black</material>
   </gazebo>
 
