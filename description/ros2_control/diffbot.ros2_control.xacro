@@ -1,10 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="diffbot_ros2_control" params="name prefix use_mock_hardware">
 
-    <ros2_control name="${name}" type="system">
-      <xacro:unless value="${use_mock_hardware}">
+    <ros2_control name="diffbot_ros2_control" type="system">
         <hardware>
           <plugin>ros2_control_demo_example_2/DiffBotSystemHardware</plugin>
           <!-- ... -->
@@ -34,13 +32,6 @@
           <param name="ddsm115_left_wheel_id">3</param>
           <param name="ddsm115_right_wheel_id">4</param>
         </hardware>
-      </xacro:unless>
-      <xacro:if value="${use_mock_hardware}">
-        <hardware>
-          <plugin>mock_components/GenericSystem</plugin>
-          <param name="calculate_dynamics">true</param>
-        </hardware>
-      </xacro:if>
       <joint name="left_wheel_joint">
         <command_interface name="velocity"/>
         <state_interface name="position"/>
@@ -63,6 +54,5 @@
 
     </ros2_control>
 
-  </xacro:macro>
 
 </robot>
