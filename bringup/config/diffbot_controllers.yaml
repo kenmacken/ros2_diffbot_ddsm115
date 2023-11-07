@@ -8,14 +8,14 @@ controller_manager:
     # velocity_controller:
     #   type: velocity_controllers/JointGroupVelocityController
 
-    ackermann_steering_controller:
-      type: ackermann_steering_controller/AckermannSteeringController
+    # ackermann_steering_controller:
+    #   type: ackermann_steering_controller/AckermannSteeringController
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    # diffbot_base_controller:
-    #   type: diff_drive_controller/DiffDriveController
+    diffbot_base_controller:
+      type: diff_drive_controller/DiffDriveController
 
 position_controller:
   ros__parameters:

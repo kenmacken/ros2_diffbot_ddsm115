@@ -120,13 +120,13 @@ std::vector<hardware_interface::StateInterface> DiffBotSystemHardware::export_st
 {
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
-  // state_interfaces.emplace_back(hardware_interface::StateInterface(
-  //   steer_l_.name, hardware_interface::HW_IF_POSITION, &steer_l_.pos));
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    steer_l_.name, hardware_interface::HW_IF_POSITION, &steer_l_.pos));
   // state_interfaces.emplace_back(hardware_interface::StateInterface(
   //   steer_l_.name, hardware_interface::HW_IF_VELOCITY, &steer_l_.vel));
   
-  // state_interfaces.emplace_back(hardware_interface::StateInterface(
-  //   steer_r_.name, hardware_interface::HW_IF_POSITION, &steer_r_.pos));
+  state_interfaces.emplace_back(hardware_interface::StateInterface(
+    steer_r_.name, hardware_interface::HW_IF_POSITION, &steer_r_.pos));
   // state_interfaces.emplace_back(hardware_interface::StateInterface(
   //   steer_r_.name, hardware_interface::HW_IF_VELOCITY, &steer_r_.vel));
 
@@ -148,11 +148,11 @@ std::vector<hardware_interface::CommandInterface> DiffBotSystemHardware::export_
 {
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
-  // command_interfaces.emplace_back(hardware_interface::CommandInterface(
-  //   steer_l_.name, hardware_interface::HW_IF_POSITION, &steer_l_.cmd));
+  command_interfaces.emplace_back(hardware_interface::CommandInterface(
+    steer_l_.name, hardware_interface::HW_IF_POSITION, &steer_l_.cmd));
 
-  // command_interfaces.emplace_back(hardware_interface::CommandInterface(
-  //   steer_r_.name, hardware_interface::HW_IF_POSITION, &steer_r_.cmd));
+  command_interfaces.emplace_back(hardware_interface::CommandInterface(
+    steer_r_.name, hardware_interface::HW_IF_POSITION, &steer_r_.cmd));
 
   
   command_interfaces.emplace_back(hardware_interface::CommandInterface(
@@ -169,7 +169,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_activate(
 {
   RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Activating ...please wait...");
 
-  // mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
+  mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
   ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
 
   ddsm115_comms_.set_ddsm115_mode(wheel_l_.id, VELOCITY_LOOP);
@@ -185,7 +185,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_deactivate(
 {
   RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Deactivating ...please wait...");
 
-  // mcu_comms_.disconnect();
+  mcu_comms_.disconnect();
   ddsm115_comms_.disconnect();
 
   RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Successfully deactivated!");
@@ -199,16 +199,16 @@ hardware_interface::return_type DiffBotSystemHardware::read(
   // Get Servo/Steering Positions and Velocities
   double delta_seconds = period.seconds();
 
-  // double pos_prev = steer_l_.pos;
-  // steer_l_.pos = steer_l_.degrees_to_radians(mcu_comms_.get_servo_position());
-  // steer_l_.vel = (steer_l_.pos - pos_prev) / delta_seconds;
+  double pos_prev = steer_l_.pos;
+  steer_l_.pos = steer_l_.degrees_to_radians(mcu_comms_.get_servo_position());
+  steer_l_.vel = (steer_l_.pos - pos_prev) / delta_seconds;
 
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SL Position is: %f", steer_l_.radians_to_degrees(steer_l_.pos) );
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SL Velocity is: %f", steer_l_.vel);
 
-  // pos_prev = wheel_r_.pos;
-  // steer_r_.pos = steer_r_.degrees_to_radians(mcu_comms_.get_servo_position());
-  // steer_r_.vel = (steer_r_.pos - pos_prev) / delta_seconds;
+  pos_prev = wheel_r_.pos;
+  steer_r_.pos = steer_r_.degrees_to_radians(mcu_comms_.get_servo_position());
+  steer_r_.vel = (steer_r_.pos - pos_prev) / delta_seconds;
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SR Position is: %f", steer_r_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SR Velocity is: %f", steer_r_.vel);
 
@@ -236,8 +236,8 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
 {
   // Set SERVO/Steering Positions
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Command is: %f", steer_l_.cmd );
-  // mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_left_servo_offset) );
-  // mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_right_servo_offset) );
+  mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_left_servo_offset) );
+  mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_right_servo_offset) );
 
 
   // Set DDSM115 Wheel Velocities
