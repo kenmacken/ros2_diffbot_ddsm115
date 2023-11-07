@@ -59,7 +59,7 @@
     </xacro:inertial_box>
   </link>
 
-  <gazebo reference="${prefix}chassis">
+  <gazebo reference="chassis">
       <material>Gazebo/Green</material>
   </gazebo>
 
