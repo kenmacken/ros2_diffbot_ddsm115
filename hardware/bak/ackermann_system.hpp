@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef ROS2_CONTROL_DEMO_EXAMPLE_2__DIFFBOT_SYSTEM_HPP_
-#define ROS2_CONTROL_DEMO_EXAMPLE_2__DIFFBOT_SYSTEM_HPP_
+#ifndef ROS2_CONTROL_DEMO_EXAMPLE_2__ACKERMANN_SYSTEM_HPP_
+#define ROS2_CONTROL_DEMO_EXAMPLE_2__ACKERMANN_SYSTEM_HPP_
 
 #include <memory>
 #include <string>
@@ -37,7 +37,7 @@
 
 namespace ros2_control_demo_example_2
 {
-class DiffBotSystemHardware : public hardware_interface::SystemInterface
+class AckermannSystemHardware : public hardware_interface::SystemInterface
 {
 
 struct Config
@@ -63,7 +63,7 @@ struct Config
 };
 
 public:
-  RCLCPP_SHARED_PTR_DEFINITIONS(DiffBotSystemHardware);
+  RCLCPP_SHARED_PTR_DEFINITIONS(AckermannSystemHardware);
 
   ROS2_CONTROL_DEMO_EXAMPLE_2_PUBLIC
   hardware_interface::CallbackReturn on_init(
@@ -104,4 +104,4 @@ private:
 
 }  // namespace ros2_control_demo_example_2
 
-#endif  // ROS2_CONTROL_DEMO_EXAMPLE_2__DIFFBOT_SYSTEM_HPP_
+#endif  // ROS2_CONTROL_DEMO_EXAMPLE_2__ACKERMANN_SYSTEM_HPP_

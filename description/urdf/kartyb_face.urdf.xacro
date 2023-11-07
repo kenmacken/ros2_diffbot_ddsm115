@@ -2,15 +2,15 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="PI" value="3.1415926535897931"/>
-  <xacro:property name="chassis_width" value="0.3" />
-  <xacro:property name="chassis_length" value="0.35" />
-  <xacro:property name="chassis_height" value="0.32" />
+  <xacro:property name="chassis_width" value="0.22" />
+  <xacro:property name="chassis_length" value="0.28" />
+  <xacro:property name="chassis_height" value="0.22" />
 
   <!-- kartyB Face Link -->
   <joint name="face_joint" type="fixed">
     <parent link="chassis"/>
     <child link="face"/>
-    <origin xyz="${chassis_length} 0 0.2" rpy="0 -${PI/2} 0"/>
+    <origin xyz="${chassis_length} 0 0.15" rpy="0 -${PI/2} 0"/>
     <axis xyz="0 0 -1"/>
   </joint>
 

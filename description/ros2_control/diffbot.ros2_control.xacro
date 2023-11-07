@@ -6,7 +6,7 @@
         <hardware>
           <plugin>ros2_control_demo_example_2/DiffBotSystemHardware</plugin>
           <!-- ... -->
-          <!-- MCU Settings -->
+          <!-- MCU Settings - Used for serial comms to Servos -->
           <param name="steering_left_name">steering_left_pivot_joint</param>
           <param name="steering_right_name">steering_right_pivot_joint</param>
           <!-- <param name="mcu_device">/dev/serial/by-path/platform-fd500000.pcie-pci-0000:01:00.0-usb-0:1.1:1.0-port0</param> -->
@@ -43,6 +43,7 @@
         <state_interface name="velocity"/>
       </joint>
       
+      <!-- Uncomment below when using Ackermann Controller -->
       <!-- <joint name="${prefix}steering_left_pivot_joint">
         <command_interface name="position"/>
         <state_interface name="position"/>

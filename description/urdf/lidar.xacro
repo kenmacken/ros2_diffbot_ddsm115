@@ -2,12 +2,15 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
 
     <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="chassis_width" value="0.22" />
+    <xacro:property name="chassis_length" value="0.28" />
+    <xacro:property name="chassis_height" value="0.22" />
 
 
     <joint name="laser_joint" type="fixed">
-        <parent link="base_link"/>
+        <parent link="chassis"/>
         <child link="laser_frame"/>
-        <origin xyz="-0.12 0 0.4" rpy="0 0 -${PI/2}"/>
+        <origin xyz="0.025 0 ${chassis_height + 0.03}" rpy="0 0 -${PI/2}"/>
     </joint>
 
     <link name="laser_frame">
@@ -19,10 +22,10 @@
         </visual>
         <collision>
             <geometry>
-                <cylinder radius="0.05" length="0.04"/>
+                <cylinder radius="0.03" length="0.04"/>
             </geometry>
         </collision>
-        <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.05">
+        <xacro:inertial_cylinder mass="0.1" length="0.04" radius="0.03">
             <origin xyz="0 0 0" rpy="0 0 0"/>
         </xacro:inertial_cylinder>
     </link>
