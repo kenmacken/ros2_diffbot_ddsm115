@@ -3,11 +3,11 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="diffdrive_robot">
   <xacro:arg name="prefix" default="" />
 
-  <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/inertial_macros.xacro" />
+  <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/inertial_macros.xacro" /> -->
   <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/diffbot_description.urdf.xacro" /> -->
   <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/kartyb_description.urdf.xacro" /> -->
   <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/test_robot_description.urdf.xacro" />
-  <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/lidar.xacro" />
+  <!-- <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/lidar.xacro" /> -->
 
   <!-- Import Rviz colors -->
   <xacro:include filename="$(find ros2_control_demo_example_2)/urdf/materials.xacro" />
