@@ -52,14 +52,14 @@
         <state_interface name="velocity"/>
       </joint>
       
-      <!-- <joint name="${prefix}steering_left_pivot_joint">
+      <joint name="${prefix}steering_left_pivot_joint">
         <command_interface name="position"/>
         <state_interface name="position"/>
       </joint>
       <joint name="${prefix}steering_right_pivot_joint">
         <command_interface name="position"/>
         <state_interface name="position"/>
-      </joint> -->
+      </joint>
 
     </ros2_control>
 
