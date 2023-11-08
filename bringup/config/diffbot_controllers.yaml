@@ -50,6 +50,7 @@ ackermann_steering_controller:
     rear_wheels_radius: 0.05
 
 
+# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/diffbot_base_controller/cmd_vel_unstamped
 diffbot_base_controller:
   ros__parameters:
     left_wheel_names: ["left_wheel_joint"]
