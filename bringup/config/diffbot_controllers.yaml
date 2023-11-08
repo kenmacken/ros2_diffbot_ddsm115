@@ -1,6 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 50  # Hz
+    update_rate: 20  # Hz
 
     # position_controller:
     #   type: position_controllers/JointGroupPositionController
