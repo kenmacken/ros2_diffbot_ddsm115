@@ -216,7 +216,7 @@ hardware_interface::return_type DiffBotSystemHardware::read(
 
   // Get DDSM115 Wheel Positions and Velocities
   ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
-  wheel_l_.pos = wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle);
+  wheel_l_.pos = -(wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle));
   wheel_l_.vel = wheel_l_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Position is: %f", wheel_l_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Velocity is: %f", wheel_l_.vel);
@@ -241,7 +241,7 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
 
 
   // Set DDSM115 Wheel Velocities
-  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, -wheel_l_.cmd * 5, 3);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, wheel_l_.cmd * 5, 3);
   ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, -wheel_r_.cmd * 5, 3);
 
   return hardware_interface::return_type::OK;
