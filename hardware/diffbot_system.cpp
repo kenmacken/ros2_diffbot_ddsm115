@@ -241,7 +241,7 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
 
 
   // Set DDSM115 Wheel Velocities
-  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, wheel_l_.cmd * 5, 3);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, -wheel_l_.cmd * 5, 3);
   ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, -wheel_r_.cmd * 5, 3);
 
   return hardware_interface::return_type::OK;
