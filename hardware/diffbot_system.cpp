@@ -170,7 +170,11 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_configure(
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Configuring ...please wait...");
 
   // mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
-  // ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
+  if (ddsm115_comms_.connected())
+  {
+    ddsm115_comms_.disconnect();
+  }
+  ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
 
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully configured!");
 
@@ -183,7 +187,10 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_cleanup(
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Cleaning up ...please wait...");
 
   // mcu_comms_.disconnect();
-  ddsm115_comms_.disconnect();
+  if (ddsm115_comms_.connected())
+  {
+    ddsm115_comms_.disconnect();
+  }
 
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully cleaned up!");
 
@@ -195,6 +202,10 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_activate(
 {
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Activating ...please wait...");
 
+  if (ddsm115_comms_.connected())
+  {
+    ddsm115_comms_.disconnect();
+  }
   ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
 
   ddsm115_comms_.set_ddsm115_mode(wheel_l_.id, VELOCITY_LOOP);
