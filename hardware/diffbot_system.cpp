@@ -219,7 +219,7 @@ hardware_interface::return_type Ros2DDSM115Hardware::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
 {
   // Get Servo/Steering Positions and Velocities
-  double delta_seconds = period.seconds();
+  // double delta_seconds = period.seconds();
 
   // ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
   // double pos_prev = wheel_l_.pos;
@@ -265,8 +265,8 @@ hardware_interface::return_type ros2_ddsm115 ::Ros2DDSM115Hardware::write(
 
 
   // Set DDSM115 Wheel Velocities
-  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, wheel_l_.cmd, 3);
-  ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, -wheel_r_.cmd, 3);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, rad_per_sec_to_rpm(wheel_l_.cmd), 3);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, rad_per_sec_to_rpm(-wheel_r_.cmd), 3);
 
   return hardware_interface::return_type::OK;
 }
