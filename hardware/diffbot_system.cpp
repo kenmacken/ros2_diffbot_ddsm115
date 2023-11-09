@@ -195,6 +195,8 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_activate(
 {
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Activating ...please wait...");
 
+  ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
+
   ddsm115_comms_.set_ddsm115_mode(wheel_l_.id, VELOCITY_LOOP);
   ddsm115_comms_.set_ddsm115_mode(wheel_r_.id, VELOCITY_LOOP);
 
