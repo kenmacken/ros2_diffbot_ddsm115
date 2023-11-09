@@ -1,15 +1,6 @@
 controller_manager:
   ros__parameters:
-    update_rate: 50  # Hz
-
-    # position_controller:
-    #   type: position_controllers/JointGroupPositionController
-    
-    # velocity_controller:
-    #   type: velocity_controllers/JointGroupVelocityController
-
-    # ackermann_steering_controller:
-    #   type: ackermann_steering_controller/AckermannSteeringController
+    update_rate: 10  # Hz
 
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
@@ -17,88 +8,50 @@ controller_manager:
     diffbot_base_controller:
       type: diff_drive_controller/DiffDriveController
 
-# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/diffbot_base_controller/cmd_vel_unstamped
 diffbot_base_controller:
   ros__parameters:
-    publish_rate: 50.0
     left_wheel_names: ["left_wheel_joint"]
     right_wheel_names: ["right_wheel_joint"]
 
-    wheel_separation: 0.23
-    wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
+    wheel_separation: 0.25
+    #wheels_per_side: 1  # actually 2, but both are controlled by 1 signal
     wheel_radius: 0.05
 
-    # wheel_separation_multiplier: 1.0
-    # left_wheel_radius_multiplier: 1.0
-    # right_wheel_radius_multiplier: 1.0
+    wheel_separation_multiplier: 1.0
+    left_wheel_radius_multiplier: 1.0
+    right_wheel_radius_multiplier: 1.0
 
-
-    # odom_frame_id: odom
+    publish_rate: 50.0
+    odom_frame_id: odom
     base_frame_id: base_link
-    # pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
-    # twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    pose_covariance_diagonal : [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
+    twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
-    # open_loop: false
-    # enable_odom_tf: true
+    open_loop: true
+    enable_odom_tf: true
 
-    # cmd_vel_timeout: 0.5
+    cmd_vel_timeout: 0.5
     #publish_limited_velocity: true
     use_stamped_vel: false
-    # velocity_rolling_window_size: 20
+    #velocity_rolling_window_size: 10
 
     # Velocity and acceleration limits
     # Whenever a min_* is unspecified, default to -max_*
     linear.x.has_velocity_limits: false
     linear.x.has_acceleration_limits: false
     linear.x.has_jerk_limits: false
-    linear.x.max_velocity: 2.0
-    linear.x.min_velocity: -2.0
+    linear.x.max_velocity: 100.0
+    linear.x.min_velocity: -100.0
     linear.x.max_acceleration: 10.0
-    linear.x.min_acceleration: -10.0
-    linear.x.max_jerk: 5.0
-    linear.x.min_jerk: 2.0
+    linear.x.max_jerk: 0.0
+    linear.x.min_jerk: 0.0
 
     angular.z.has_velocity_limits: false
     angular.z.has_acceleration_limits: false
     angular.z.has_jerk_limits: false
-    angular.z.max_velocity: 25.0
-    angular.z.min_velocity: -25.0
+    angular.z.max_velocity: 100.0
+    angular.z.min_velocity: -100.0
     angular.z.max_acceleration: 10.0
     angular.z.min_acceleration: -10.0
-    angular.z.max_jerk: 2.0
-    angular.z.min_jerk: 0.1
-
-# position_controller:
-#   ros__parameters:
-#     joints:
-#       - left_wheel_joint
-
-# velocity_controller:
-#   ros__parameters:
-#     joints:
-#       - left_wheel_joint
-#       - right_wheel_joint
-
-# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/ackermann_steering_controller/reference_unstamped
-# ackermann_steering_controller:
-#   ros__parameters:
-#     base_frame_id: base_link
-#     odom_frame_id: odom
-
-#     reference_timeout: 2.0
-#     front_steering: true
-#     open_loop: true
-#     velocity_rolling_window_size: 20
-#     position_feedback: false
-#     use_stamped_vel: false
-#     rear_wheels_names: [right_wheel_joint, left_wheel_joint]
-#     front_wheels_names: [steering_right_pivot_joint, steering_left_pivot_joint]
-
-#     wheelbase: 0.2
-#     front_wheel_track: 0.22
-#     rear_wheel_track: 0.22
-#     front_wheels_radius: 0.05
-#     rear_wheels_radius: 0.05
-
-
-
+    angular.z.max_jerk: 0.0
+    angular.z.min_jerk: 0.0
