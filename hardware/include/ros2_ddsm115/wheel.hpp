@@ -41,7 +41,7 @@ class Wheel
 
     double rpm_to_rad_per_sec(double rpm) 
     {
-        return (2 * M_PI/60) * (rpm/60);
+        return (2 * M_PI/60) * rpm;
         // return rpm * 0.10472;
     }
 
