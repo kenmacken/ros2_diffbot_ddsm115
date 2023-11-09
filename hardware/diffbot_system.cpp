@@ -170,7 +170,7 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_configure(
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Configuring ...please wait...");
 
   // mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
-  ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
+  // ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
 
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully configured!");
 
