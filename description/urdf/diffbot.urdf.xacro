@@ -4,15 +4,15 @@
   <xacro:arg name="prefix" default="" />
 
   <xacro:include filename="$(find ros2_ddsm115)/urdf/inertial_macros.xacro" />
-  <xacro:include filename="$(find ros2_ddsm115)/urdf/kartyb_description_diffdrive.urdf.xacro" />
-  <xacro:include filename="$(find ros2_ddsm115)/urdf/kartyb_face.urdf.xacro" />
+  <!-- <xacro:include filename="$(find ros2_ddsm115)/urdf/kartyb_description_diffdrive.urdf.xacro" />
+  <xacro:include filename="$(find ros2_ddsm115)/urdf/kartyb_face.urdf.xacro" /> -->
 
-  <!-- <xacro:include filename="$(find ros2_ddsm115)/urdf/robot_demo.urdf.xacro" /> -->
+  <xacro:include filename="$(find ros2_ddsm115)/urdf/robot_demo.urdf.xacro" />
   <xacro:include filename="$(find ros2_ddsm115)/urdf/lidar.xacro" />
   <!-- <xacro:include filename="$(find ros2_ddsm115)/urdf/camera.xacro" /> -->
 
   <!-- Import Rviz colors -->
-  <xacro:include filename="$(find ros2_ddsm115)/urdf/materials.xacro" />
+  <!-- <xacro:include filename="$(find ros2_ddsm115)/urdf/materials.xacro" /> -->
 
   <!-- Import diffbot ros2_control description -->
   <xacro:include filename="$(find ros2_ddsm115)/ros2_control/diffbot.ros2_control.xacro" />
