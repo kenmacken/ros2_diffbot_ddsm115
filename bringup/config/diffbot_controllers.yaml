@@ -11,46 +11,11 @@ controller_manager:
     # ackermann_steering_controller:
     #   type: ackermann_steering_controller/AckermannSteeringController
 
-    diffbot_base_controller:
-      type: diff_drive_controller/DiffDriveController
-    
     joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-    
-
-# position_controller:
-#   ros__parameters:
-#     joints:
-#       - left_wheel_joint
-
-# velocity_controller:
-#   ros__parameters:
-#     joints:
-#       - left_wheel_joint
-#       - right_wheel_joint
-
-# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/ackermann_steering_controller/reference_unstamped
-# ackermann_steering_controller:
-#   ros__parameters:
-#     base_frame_id: base_link
-#     odom_frame_id: odom
-
-#     reference_timeout: 2.0
-#     front_steering: true
-#     open_loop: true
-#     velocity_rolling_window_size: 20
-#     position_feedback: false
-#     use_stamped_vel: false
-#     rear_wheels_names: [right_wheel_joint, left_wheel_joint]
-#     front_wheels_names: [steering_right_pivot_joint, steering_left_pivot_joint]
-
-#     wheelbase: 0.2
-#     front_wheel_track: 0.22
-#     rear_wheel_track: 0.22
-#     front_wheels_radius: 0.05
-#     rear_wheels_radius: 0.05
-
+    diffbot_base_controller:
+      type: diff_drive_controller/DiffDriveController
 
 # ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/diffbot_base_controller/cmd_vel_unstamped
 diffbot_base_controller:
@@ -102,3 +67,38 @@ diffbot_base_controller:
     angular.z.min_acceleration: -10.0
     angular.z.max_jerk: 2.0
     angular.z.min_jerk: 0.1
+
+# position_controller:
+#   ros__parameters:
+#     joints:
+#       - left_wheel_joint
+
+# velocity_controller:
+#   ros__parameters:
+#     joints:
+#       - left_wheel_joint
+#       - right_wheel_joint
+
+# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/ackermann_steering_controller/reference_unstamped
+# ackermann_steering_controller:
+#   ros__parameters:
+#     base_frame_id: base_link
+#     odom_frame_id: odom
+
+#     reference_timeout: 2.0
+#     front_steering: true
+#     open_loop: true
+#     velocity_rolling_window_size: 20
+#     position_feedback: false
+#     use_stamped_vel: false
+#     rear_wheels_names: [right_wheel_joint, left_wheel_joint]
+#     front_wheels_names: [steering_right_pivot_joint, steering_left_pivot_joint]
+
+#     wheelbase: 0.2
+#     front_wheel_track: 0.22
+#     rear_wheel_track: 0.22
+#     front_wheels_radius: 0.05
+#     rear_wheels_radius: 0.05
+
+
+
