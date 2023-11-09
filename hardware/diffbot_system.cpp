@@ -221,31 +221,33 @@ hardware_interface::return_type Ros2DDSM115Hardware::read(
   // Get Servo/Steering Positions and Velocities
   double delta_seconds = period.seconds();
 
-  // double pos_prev = steer_l_.pos;
-  // steer_l_.pos = steer_l_.degrees_to_radians(mcu_comms_.get_servo_position());
-  // steer_l_.vel = (steer_l_.pos - pos_prev) / delta_seconds;
+  ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
+  double pos_prev = wheel_l_.pos;
+  wheel_l_.pos = wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle);
+  wheel_l_.vel = (wheel_l_.pos - pos_prev) / delta_seconds;
 
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SL Position is: %f", steer_l_.radians_to_degrees(steer_l_.pos) );
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SL Velocity is: %f", steer_l_.vel);
 
-  // pos_prev = wheel_r_.pos;
-  // steer_r_.pos = steer_r_.degrees_to_radians(mcu_comms_.get_servo_position());
-  // steer_r_.vel = (steer_r_.pos - pos_prev) / delta_seconds;
+  ddsm115_comms_.get_ddsm115_mode(wheel_r_.id);
+  pos_prev = wheel_r_.pos;
+  wheel_r_.pos = wheel_r_.degrees_to_radians(ddsm115_comms_.responseData.angle);
+  wheel_r_.vel = (wheel_r_.pos - pos_prev) / delta_seconds;
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SR Position is: %f", steer_r_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "SR Velocity is: %f", steer_r_.vel);
 
 
 
   // Get DDSM115 Wheel Positions and Velocities
-  ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
-  wheel_l_.pos = -(wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle));
-  wheel_l_.vel = wheel_l_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
+  // ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
+  // wheel_l_.pos = -(wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle));
+  // wheel_l_.vel = wheel_l_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Position is: %f", wheel_l_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Velocity is: %f", wheel_l_.vel);
 
-  ddsm115_comms_.get_ddsm115_mode(wheel_r_.id);
-  wheel_r_.pos = wheel_r_.degrees_to_radians(ddsm115_comms_.responseData.angle);
-  wheel_r_.vel = wheel_r_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
+  // ddsm115_comms_.get_ddsm115_mode(wheel_r_.id);
+  // wheel_r_.pos = wheel_r_.degrees_to_radians(ddsm115_comms_.responseData.angle);
+  // wheel_r_.vel = wheel_r_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WR Position is: %f", wheel_r_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WR Velocity is: %f", wheel_r_.vel);
 
