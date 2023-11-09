@@ -1,5 +1,5 @@
-#ifndef ROS2_CONTROL_DEMO_EXAMPLE_2_WHEEL_HPP
-#define ROS2_CONTROL_DEMO_EXAMPLE_2_WHEEL_HPP
+#ifndef ROS2_DDSM115_WHEEL_HPP
+#define ROS2_DDSM115_WHEEL_HPP
 
 #include <string>
 #include <cmath>

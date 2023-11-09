@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "ros2_control_demo_example_2/diffbot_system.hpp"
+#include "ros2_ddsm115/diffbot_system.hpp"
 
 #include <chrono>
 #include <cmath>
@@ -24,9 +24,9 @@
 #include "hardware_interface/types/hardware_interface_type_values.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-namespace ros2_control_demo_example_2
+namespace ros2_ddsm115
 {
-hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
+hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_init(
   const hardware_interface::HardwareInfo & info)
 {
   if (
@@ -70,7 +70,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
     if (joint.command_interfaces.size() != 1)
     {
       RCLCPP_FATAL(
-        rclcpp::get_logger("DiffBotSystemHardware"),
+        rclcpp::get_logger("Ros2DDSM115Hardware"),
         "Joint '%s' has %zu command interfaces found. 1 expected.", joint.name.c_str(),
         joint.command_interfaces.size());
       return hardware_interface::CallbackReturn::ERROR;
@@ -79,7 +79,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
     // if (joint.command_interfaces[0].name != hardware_interface::HW_IF_VELOCITY || hardware_interface::HW_IF_POSITION)
     // {
     //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("DiffBotSystemHardware"),
+    //     rclcpp::get_logger("Ros2DDSM115Hardware"),
     //     "Joint '%s' have %s command interfaces found. '%s' expected.", joint.name.c_str(),
     //     joint.command_interfaces[0].name.c_str(), hardware_interface::HW_IF_VELOCITY);
     //   return hardware_interface::CallbackReturn::ERROR;
@@ -88,7 +88,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
     // if (joint.state_interfaces.size() >= 1)
     // {
     //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("DiffBotSystemHardware"),
+    //     rclcpp::get_logger("Ros2DDSM115Hardware"),
     //     "Joint '%s' has %zu state interface. 2 expected.", joint.name.c_str(),
     //     joint.state_interfaces.size());
     //   return hardware_interface::CallbackReturn::ERROR;
@@ -97,7 +97,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
     // if (joint.state_interfaces[0].name != hardware_interface::HW_IF_POSITION)
     // {
     //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("DiffBotSystemHardware"),
+    //     rclcpp::get_logger("Ros2DDSM115Hardware"),
     //     "Joint '%s' have '%s' as first state interface. '%s' expected.", joint.name.c_str(),
     //     joint.state_interfaces[0].name.c_str(), hardware_interface::HW_IF_POSITION);
     //   return hardware_interface::CallbackReturn::ERROR;
@@ -106,7 +106,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
     // if (joint.state_interfaces[1].name != hardware_interface::HW_IF_VELOCITY)
     // {
     //   RCLCPP_FATAL(
-    //     rclcpp::get_logger("DiffBotSystemHardware"),
+    //     rclcpp::get_logger("Ros2DDSM115Hardware"),
     //     "Joint '%s' have '%s' as second state interface. '%s' expected.", joint.name.c_str(),
     //     joint.state_interfaces[1].name.c_str(), hardware_interface::HW_IF_VELOCITY);
     //   return hardware_interface::CallbackReturn::ERROR;
@@ -116,7 +116,7 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_init(
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-std::vector<hardware_interface::StateInterface> DiffBotSystemHardware::export_state_interfaces()
+std::vector<hardware_interface::StateInterface> Ros2DDSM115Hardware::export_state_interfaces()
 {
   std::vector<hardware_interface::StateInterface> state_interfaces;
 
@@ -144,7 +144,7 @@ std::vector<hardware_interface::StateInterface> DiffBotSystemHardware::export_st
   return state_interfaces;
 }
 
-std::vector<hardware_interface::CommandInterface> DiffBotSystemHardware::export_command_interfaces()
+std::vector<hardware_interface::CommandInterface> Ros2DDSM115Hardware::export_command_interfaces()
 {
   std::vector<hardware_interface::CommandInterface> command_interfaces;
 
@@ -164,10 +164,10 @@ std::vector<hardware_interface::CommandInterface> DiffBotSystemHardware::export_
   return command_interfaces;
 }
 
-hardware_interface::CallbackReturn DiffBotSystemHardware::on_activate(
+hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Activating ...please wait...");
+  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Activating ...please wait...");
 
   // mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
   ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
@@ -175,25 +175,25 @@ hardware_interface::CallbackReturn DiffBotSystemHardware::on_activate(
   ddsm115_comms_.set_ddsm115_mode(wheel_l_.id, VELOCITY_LOOP);
   ddsm115_comms_.set_ddsm115_mode(wheel_r_.id, VELOCITY_LOOP);
 
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Successfully activated!");
+  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully activated!");
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::CallbackReturn DiffBotSystemHardware::on_deactivate(
+hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_deactivate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Deactivating ...please wait...");
+  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Deactivating ...please wait...");
 
   // mcu_comms_.disconnect();
   ddsm115_comms_.disconnect();
 
-  RCLCPP_INFO(rclcpp::get_logger("DiffBotSystemHardware"), "Successfully deactivated!");
+  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully deactivated!");
 
   return hardware_interface::CallbackReturn::SUCCESS;
 }
 
-hardware_interface::return_type DiffBotSystemHardware::read(
+hardware_interface::return_type Ros2DDSM115Hardware::read(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & period)
 {
   // Get Servo/Steering Positions and Velocities
@@ -231,7 +231,7 @@ hardware_interface::return_type DiffBotSystemHardware::read(
   return hardware_interface::return_type::OK;
 }
 
-hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardware::write(
+hardware_interface::return_type ros2_ddsm115 ::Ros2DDSM115Hardware::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   // Set SERVO/Steering Positions
@@ -247,8 +247,8 @@ hardware_interface::return_type ros2_control_demo_example_2 ::DiffBotSystemHardw
   return hardware_interface::return_type::OK;
 }
 
-}  // namespace ros2_control_demo_example_2
+}  // namespace ros2_ddsm115
 
 #include "pluginlib/class_list_macros.hpp"
 PLUGINLIB_EXPORT_CLASS(
-  ros2_control_demo_example_2::DiffBotSystemHardware, hardware_interface::SystemInterface)
+  ros2_ddsm115::Ros2DDSM115Hardware, hardware_interface::SystemInterface)

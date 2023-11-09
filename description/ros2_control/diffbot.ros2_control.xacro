@@ -4,7 +4,7 @@
 
     <ros2_control name="diffbot_ros2_control" type="system">
         <hardware>
-          <plugin>ros2_control_demo_example_2/DiffBotSystemHardware</plugin>
+          <plugin>ros2_ddsm115/Ros2DDSM115Hardware</plugin>
           <!-- ... -->
           <!-- MCU Settings - Used for serial comms to Servos -->
           <param name="steering_left_name">steering_left_pivot_joint</param>

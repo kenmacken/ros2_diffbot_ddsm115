@@ -1,4 +1,4 @@
-# ros2_control_demo_example_2
+# ros2_ddsm115
 
    *DiffBot*, or ''Differential Mobile Robot'', is a simple mobile base with differential drive.
    The robot is basically a box moving according to differential drive kinematics.

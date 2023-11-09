@@ -17,7 +17,7 @@ def generate_launch_description():
     use_mock_hardware = False
 
     # Process the URDF file
-    pkg_path = os.path.join(get_package_share_directory('ros2_control_demo_example_2'))
+    pkg_path = os.path.join(get_package_share_directory('ros2_ddsm115'))
     xacro_file = os.path.join(pkg_path,'urdf','diffbot.urdf.xacro')
     robot_description_config = xacro.process_file(xacro_file)
     
