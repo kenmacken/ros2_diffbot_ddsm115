@@ -49,6 +49,11 @@ class Wheel
         return (radPerSec * 60.0) / (2.0 * M_PI);
     }
 
+    double mpsToRPM(double mps, double wheelRadius) 
+    {
+        return (60.0 / (2.0 * M_PI * wheelRadius)) * mps;
+    }
+
 };
 
 

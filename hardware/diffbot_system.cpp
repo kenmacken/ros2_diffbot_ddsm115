@@ -222,13 +222,13 @@ hardware_interface::return_type Ros2DDSM115Hardware::read(
   ddsm115_comms_.get_ddsm115_mode(wheel_l_.id);
   wheel_l_.pos = -(wheel_l_.degrees_to_radians(ddsm115_comms_.responseData.angle));
   wheel_l_.vel = wheel_l_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
-  RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Position is: %f", wheel_l_.pos);
+  // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Position is: %f", wheel_l_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Velocity is: %f", wheel_l_.vel);
 
   ddsm115_comms_.get_ddsm115_mode(wheel_r_.id);
   wheel_r_.pos = wheel_r_.degrees_to_radians(ddsm115_comms_.responseData.angle);
   wheel_r_.vel = wheel_r_.rpm_to_rad_per_sec(ddsm115_comms_.responseData.velocity);
-  RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WR Position is: %f", wheel_r_.pos);
+  // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WR Position is: %f", wheel_r_.pos);
   // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WR Velocity is: %f", wheel_r_.vel);
 
 
@@ -239,14 +239,17 @@ hardware_interface::return_type ros2_ddsm115 ::Ros2DDSM115Hardware::write(
   const rclcpp::Time & /*time*/, const rclcpp::Duration & /*period*/)
 {
   // Set SERVO/Steering Positions
-  // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Command is: %f", steer_l_.cmd );
+  // RCLCPP_INFO(rclcpp::get_logger("DiffDriveDDSM115Hardware"), "WL Command is: %f", wheel_l_.cmd );
   // mcu_comms_.set_servo_position(steer_l_.id, steer_l_.radians_to_degrees(steer_l_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_left_servo_offset) );
   // mcu_comms_.set_servo_position(steer_r_.id, steer_r_.radians_to_degrees(steer_r_.cmd)/cfg_.servo_scaler + (90 + cfg_.mcu_right_servo_offset) );
 
 
   // Set DDSM115 Wheel Velocities
-  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, (wheel_l_.cmd)*5, 3);
-  ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, (-wheel_r_.cmd)*5, 3);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, wheel_l_.mpsToRPM(wheel_l_.cmd, 0.05), 0);
+  ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, -wheel_r_.mpsToRPM(wheel_r_.cmd, 0.05), 0);
+
+  // ddsm115_comms_.set_ddsm115_velocity(wheel_l_.id, wheel_l_.cmd * 5, 3);
+  // ddsm115_comms_.set_ddsm115_velocity(wheel_r_.id, -wheel_r_.cmd * 5, 3);
 
   return hardware_interface::return_type::OK;
 }

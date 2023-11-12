@@ -101,13 +101,13 @@ public:
 
 private:
   
-  mcuComms mcu_comms_;
+  // mcuComms mcu_comms_;
   DDSM115Comms ddsm115_comms_;
   Config cfg_;
   Wheel wheel_l_;
   Wheel wheel_r_;
-  Wheel steer_l_;
-  Wheel steer_r_;
+  // Wheel steer_l_;
+  // Wheel steer_r_;
 };
 
 }  // namespace ros2_ddsm115
