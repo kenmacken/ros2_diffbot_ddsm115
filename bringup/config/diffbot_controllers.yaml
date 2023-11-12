@@ -8,6 +8,7 @@ controller_manager:
     diffbot_base_controller:
       type: diff_drive_controller/DiffDriveController
 
+# ros2 launch teleop_twist_joy teleop-launch.py joy_config:='xbox' joy_vel:=/diffbot_base_controller/cmd_vel_unstamped
 diffbot_base_controller:
   ros__parameters:
     left_wheel_names: ["left_wheel_joint"]
@@ -28,10 +29,10 @@ diffbot_base_controller:
     twist_covariance_diagonal: [0.001, 0.001, 0.001, 0.001, 0.001, 0.01]
 
     open_loop: true
-    # enable_odom_tf: true
+    enable_odom_tf: true
 
     cmd_vel_timeout: 0.5
-    publish_limited_velocity: true
+    publish_limited_velocity: false
     use_stamped_vel: false
     velocity_rolling_window_size: 10
 
