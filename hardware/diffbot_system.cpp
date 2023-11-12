@@ -164,39 +164,6 @@ std::vector<hardware_interface::CommandInterface> Ros2DDSM115Hardware::export_co
   return command_interfaces;
 }
 
-hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_configure(
-  const rclcpp_lifecycle::State & /*previous_state*/)
-{
-  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Configuring ...please wait...");
-
-  // mcu_comms_.connect(cfg_.mcu_device, cfg_.mcu_baud_rate, cfg_.mcu_timeout_ms);
-  if (ddsm115_comms_.connected())
-  {
-    ddsm115_comms_.disconnect();
-  }
-  ddsm115_comms_.connect(cfg_.ddsm115_device, cfg_.ddsm115_timeout_ms);
-
-  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully configured!");
-
-  return hardware_interface::CallbackReturn::SUCCESS;
-}
-
-hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_cleanup(
-  const rclcpp_lifecycle::State & /*previous_state*/)
-{
-  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Cleaning up ...please wait...");
-
-  // mcu_comms_.disconnect();
-  if (ddsm115_comms_.connected())
-  {
-    ddsm115_comms_.disconnect();
-  }
-
-  RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully cleaned up!");
-
-  return hardware_interface::CallbackReturn::SUCCESS;
-}
-
 hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_activate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
@@ -220,6 +187,8 @@ hardware_interface::CallbackReturn Ros2DDSM115Hardware::on_deactivate(
   const rclcpp_lifecycle::State & /*previous_state*/)
 {
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Deactivating ...please wait...");
+
+  ddsm115_comms_.disconnect();
 
   RCLCPP_INFO(rclcpp::get_logger("Ros2DDSM115Hardware"), "Successfully deactivated!");
 
